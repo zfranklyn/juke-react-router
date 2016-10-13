@@ -1,22 +1,24 @@
 'use strict';
 
 import React from 'react';
-import {Link} from 'react-router';
+import {Router, Link} from 'react-router';
 
 export default ({ go, location }) => (
   <sidebar>
     <img src="juke.svg" className="logo" />
     <section>
-      <h4 className={location.match('album') ? 'menu-item active' : 'menu-item'}>
-        <Link to="/albums">ALBUMS</Link>
-      </h4>
+      <Link to="albums" activeClassName="active">
+        <h4 className='menu-item'>
+          ALBUMS
+        </h4>
+      </Link> 
     </section>
     <section>™
-      <h4 className={location.match('artist') ? 'menu-item active' : 'menu-item'}>
-        <a href="#" onClick={() => go('artists')}>ARTISTS</a>
-      </h4>
+      <Link to="artists" activeClassName="active">
+        <h4 className='menu-item'>
+          ARTISTS
+        </h4>
+      </Link>
     </section>
   </sidebar>
 );
-
-<Link to="albums" onClick={() => go('albums')}>ALBUMS</Link>

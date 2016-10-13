@@ -20,10 +20,10 @@ ReactDOM.render(
   <Provider store={store}>
   	<Router history={hashHistory}>
   		<Route path='/' component={AppContainer}>
-  			<Route path='albums' component={AlbumsContainer}/>
-  			<Route path='/artists' component={ArtistsContainer}/>
-			<Route path='albums/:albumId' component={AlbumContainer}/>
-  		</Route>
+			   <Route path='albums' component={AlbumsContainer}/>
+			   <Route path='/artists' component={ArtistsContainer}/>
+			   <Route path='albums/:albumId' component={AlbumContainer}/>
+      </Route>
     </Router>
   </Provider>,
   document.getElementById('app')
