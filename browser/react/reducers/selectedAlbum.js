@@ -5,6 +5,7 @@ import { convertAlbum } from '../converters';
 
 const initialAlbum = {};
 
+// sets state.selectedAlbum
 export default function album (state = initialAlbum, action) {
   switch (action.type) {
     case RECEIVE_ALBUM: return convertAlbum(action.album);

@@ -14,5 +14,6 @@ export default ({ artists, go }) => (
         ))
       }
     </div>
+    {this.props.children}
   </div>
 );

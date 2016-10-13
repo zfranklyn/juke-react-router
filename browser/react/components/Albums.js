@@ -3,6 +3,7 @@
 import React from 'react';
 
 export default ({ albums, go }) => (
+  
   <div>
     <h3>Albums</h3>
     <div className="row">
@@ -22,5 +23,11 @@ export default ({ albums, go }) => (
         ))
       }
     </div>
+
+    {/*this.props.children*/}
+
   </div>
+
+
+
 );
