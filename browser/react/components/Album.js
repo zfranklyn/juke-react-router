@@ -14,6 +14,7 @@ class Album extends React.Component{
 
 		const { selectedAlbum } = this.props;
 
+
 		return(
 			  <div className="album">
 			    <div>
