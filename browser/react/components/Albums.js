@@ -24,8 +24,6 @@ export default ({ albums, go }) => (
       }
     </div>
 
-    {/*this.props.children*/}
-
   </div>
 
 

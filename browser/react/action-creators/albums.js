@@ -19,6 +19,7 @@ export const fetchAndGoToAlbum = album =>
     fetch(`/api/albums/${album.id}`)
       .then(res => res.json())
       .then(album => {
+        console.log("fetching album");
         dispatch(receiveAlbum(album));
         dispatch(switchLocation('album')); //change URL
       });

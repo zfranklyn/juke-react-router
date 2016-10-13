@@ -80,6 +80,10 @@
 	
 	var _ArtistContainer2 = _interopRequireDefault(_ArtistContainer);
 	
+	var _Album = __webpack_require__(225);
+	
+	var _Album2 = _interopRequireDefault(_Album);
+	
 	var _reactRouter = __webpack_require__(237);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -93,10 +97,9 @@
 	    _react2.default.createElement(
 	      _reactRouter.Route,
 	      { path: '/', component: _AppContainer2.default },
-	      _react2.default.createElement(_reactRouter.Route, { path: '/albums', component: _AlbumsContainer2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/albums/:albumId', component: _AlbumContainer2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: 'albums', component: _AlbumsContainer2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/artists', component: _ArtistsContainer2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/artists/:artistId', component: _ArtistContainer2.default })
+	      _react2.default.createElement(_reactRouter.Route, { path: 'albums/:albumId', component: _AlbumContainer2.default })
 	    )
 	  )
 	), document.getElementById('app'));
@@ -24765,6 +24768,7 @@
 	    return fetch('/api/albums/' + album.id).then(function (res) {
 	      return res.json();
 	    }).then(function (album) {
+	      console.log("fetching album");
 	      dispatch(receiveAlbum(album));
 	      dispatch((0, _location.switchLocation)('album')); //change URL
 	    });
@@ -24785,13 +24789,15 @@
 	
 	var _Album = __webpack_require__(225);
 	
+	var _Album2 = _interopRequireDefault(_Album);
+	
 	var _albums = __webpack_require__(223);
 	
-	var mapStateToProps = function mapStateToProps(_ref) {
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(_ref, ownProps) {
 		var selectedAlbum = _ref.selectedAlbum;
-		return {
-			selectedAlbum: selectedAlbum
-		};
+		return { selectedAlbum: selectedAlbum };
 	};
 	
 	var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
@@ -24803,7 +24809,7 @@
 		};
 	};
 	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Album.Album);
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Album2.default);
 
 /***/ },
 /* 225 */
@@ -24846,8 +24852,6 @@
 			key: 'componentDidMount',
 			value: function componentDidMount() {
 				var id = this.props.params.albumId; // passed in from Router
-	
-				console.log(id);
 				this.props.goToSpecificAlbum(id);
 			}
 		}, {
@@ -24855,6 +24859,7 @@
 			value: function render() {
 				var selectedAlbum = this.props.selectedAlbum;
 	
+				console.log(selectedAlbum);
 	
 				return _react2.default.createElement(
 					'div',
@@ -24971,7 +24976,7 @@
 	    _react2.default.createElement(
 	      'tbody',
 	      null,
-	      songs.map(function (song) {
+	      songs && songs.map(function (song) {
 	        return _react2.default.createElement(
 	          'tr',
 	          { key: song.id },
