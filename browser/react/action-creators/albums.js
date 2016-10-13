@@ -14,12 +14,17 @@ export const receiveAlbum = album => ({
 });
 
 // fetches one album and sets selectedAlbum to the retrieved album
-export const fetchAndGoToAlbum = album => 
-  dispatch => 
-    fetch(`/api/albums/${album.id}`)
-      .then(res => res.json())
-      .then(album => {
-        console.log("fetching album");
-        dispatch(receiveAlbum(album));
-        dispatch(switchLocation('album')); //change URL
-      });
+export const fetchAndGoToAlbum = album => {
+  return (dispatch => 
+      fetch(`/api/albums/${album.id}`)
+        .then(res => res.json())
+        .then(album => {
+          dispatch(receiveAlbum(album));
+          dispatch(switchLocation('album')); //change URL
+        })
+        .catch(err=>{
+          console.log(err);
+        })
+      )
+
+}

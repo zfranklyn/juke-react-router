@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch,ownProps)=>{
 	return ({
 		// fetches specific album and sets state.currentAlbum to the result
 		goToSpecificAlbum(id){
-			return fetchAndGoToAlbum({id})			
+			dispatch(fetchAndGoToAlbum({id}));
 		}
 
 	})

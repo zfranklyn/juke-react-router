@@ -24568,6 +24568,8 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _reactRouter = __webpack_require__(237);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = function (_ref) {
@@ -24584,10 +24586,8 @@
 	        'h4',
 	        { className: location.match('album') ? 'menu-item active' : 'menu-item' },
 	        _react2.default.createElement(
-	          'a',
-	          { href: '#', onClick: function onClick() {
-	              return go('albums');
-	            } },
+	          _reactRouter.Link,
+	          { to: '/albums' },
 	          'ALBUMS'
 	        )
 	      )
@@ -24595,6 +24595,7 @@
 	    _react2.default.createElement(
 	      'section',
 	      null,
+	      '\u2122',
 	      _react2.default.createElement(
 	        'h4',
 	        { className: location.match('artist') ? 'menu-item active' : 'menu-item' },
@@ -24609,6 +24610,14 @@
 	    )
 	  );
 	};
+	
+	_react2.default.createElement(
+	  _reactRouter.Link,
+	  { to: 'albums', onClick: function onClick() {
+	      return go('albums');
+	    } },
+	  'ALBUMS'
+	);
 
 /***/ },
 /* 220 */
@@ -24681,6 +24690,8 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _reactRouter = __webpack_require__(237);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = function (_ref) {
@@ -24702,8 +24713,8 @@
 	          'div',
 	          { className: 'col-xs-4', key: album.id },
 	          _react2.default.createElement(
-	            'a',
-	            { className: 'thumbnail', href: '#', onClick: function onClick() {
+	            _reactRouter.Link,
+	            { className: 'thumbnail', to: 'albums/' + album.id, onClick: function onClick() {
 	                return go(album);
 	              } },
 	            _react2.default.createElement('img', { src: album.imageUrl }),
@@ -24768,9 +24779,10 @@
 	    return fetch('/api/albums/' + album.id).then(function (res) {
 	      return res.json();
 	    }).then(function (album) {
-	      console.log("fetching album");
 	      dispatch(receiveAlbum(album));
 	      dispatch((0, _location.switchLocation)('album')); //change URL
+	    }).catch(function (err) {
+	      console.log(err);
 	    });
 	  };
 	};
@@ -24804,7 +24816,7 @@
 		return {
 			// fetches specific album and sets state.currentAlbum to the result
 			goToSpecificAlbum: function goToSpecificAlbum(id) {
-				return (0, _albums.fetchAndGoToAlbum)({ id: id });
+				dispatch((0, _albums.fetchAndGoToAlbum)({ id: id }));
 			}
 		};
 	};
@@ -24859,7 +24871,6 @@
 			value: function render() {
 				var selectedAlbum = this.props.selectedAlbum;
 	
-				console.log(selectedAlbum);
 	
 				return _react2.default.createElement(
 					'div',
